@@ -1,4 +1,9 @@
-import math
+# VERSION 1.0.4
+import math, subprocess
+
+# Clear function so I don't have to clear the terminal manually every time (obviously not going to work with Windows)
+def clear():
+    subprocess.call('clear', shell=True)
 
 # named denomination of currencies in Australia
 moneyTypes = ['five cents', 'ten cents', 'twenty cents', 'fifty cents', 'one dollar', 'two dollars', 'five dollars', 'ten dollars', 'twenty dollars', 'fifty dollars', 'one-hundred dollars']
@@ -26,8 +31,7 @@ for i in moneyTypes:
     x = int(x)
     benchtop.append(x)
 
-# FINALLY learnt how to iterate values of one list and store them as values in a key:value pair with another list!
-# hashtag 'took me all day but I learnt how to do it!' It's so clean and simple, too!
+# Create walletCount dict, which is a count of physical money denominations as values, with moneyTypes data as keys (used soley for checking) 
 walletCount = {moneyTypes: benchtop for moneyTypes, benchtop in zip(moneyTypes, benchtop)}
 
 def playerWallet():
@@ -50,5 +54,6 @@ def playerWallet():
     # Test printing result
     print(wallet)
 
-
+clear()
 playerWallet()
+#print(walletCount)
