@@ -49,10 +49,19 @@ def playerWallet():
     for amount, financialValue in zip(counter, v):
         x = amount * financialValue
         x = "%.2f" % x
-        wallet.append(x)
-        
-    # Test printing result
-    print(wallet)
+        x = float(x)
+        wallet.append(x)   
+    
+    # Creating a sum total of all money
+    sumTotal = 0
+    for i in wallet:
+        sumTotal = sumTotal + i
+        i += 1
+  
+
+    checkTotal = f"You have ${sumTotal} in your wallet." 
+    print(checkTotal)
+    
 
 clear()
 playerWallet()
