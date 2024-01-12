@@ -1,4 +1,4 @@
-# VERSION 1.0.4
+# VERSION 1.0.6
 import math, subprocess
 
 # Clear function so I don't have to clear the terminal manually every time (obviously not going to work with Windows)
