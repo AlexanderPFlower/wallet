@@ -1,0 +1,67 @@
+The purpose of this code is to have a 'wallet system' that could be implemented in a future project.
+It actually kicked off a personal project that I quickly started brainstorming many other features to have in a text-based videogame.
+
+The Wallet System really was a response to a thought that I had, being that I can't recall playing an RPG wherein the currency/economy wasn't simply
+"coins", "gold", "fleebledoops" or whatever - always a single denomination which appeared to be adopted by all in the lands.
+
+Yes, it makes it simple for the player, but it could be incredibly immersive for an RPG with multiple nations and peoples to have distinguishable currency.
+
+wallet.py will request an input from the user for each Australian denomination:
+5c, 10c, 20c, 50c, $1, $2, $5, $10, $20, $50, $100.
+
+These inputs are treated as an integer that represent the frequency of each denomination.
+In order for this to work, when iterating over each denomination as a string, the input must be typecasted to an integer.
+Failing to do so will throw a Type Error as strings in a list appear not to be an appropriate type in iterations.
+The values are stored in a list called benchtop (as if you were counting change on a store's bench before handing the right amount over haha)
+Thus, we have the following code block to ask the user for an input:
+
+moneyTypes = ['five cents', 'ten cents', 'twenty cents', 'fifty cents', 'one dollar', 'two dollars', 'five dollars', 'ten dollars', 'twenty dollars', 'fifty dollars', 'one-hundred dollars']
+
+benchtop = []
+
+for i in moneyTypes:
+    x = input(f'How many {i} do you have? ')
+    x = int(x)
+    benchtop.append(x)
+
+
+These values are then treated as a multiplier against a dictionary that contains floats representing the calculable values.
+
+moneyValues = {
+    "fiveCents" : 0.05,
+    "tenCents" : 0.10,
+    "twentyCents" : 0.20,
+    "fiftyCents" : 0.50,
+    "oneDollar" : 1.0,
+    "twoDollars" : 2.0,
+    "fiveDollars" : 5.0,
+    "tenDollars" : 10.0,
+    "twentyDollars" : 20.0,
+    "fiftyDollars" : 50.0,
+    "oneHundredDollars" : 100.0 }
+
+
+To check how to combine the multiplier with the real values, I wrote the following test which is unused to achieve the goal:
+walletCount = {moneyTypes: benchtop for moneyTypes, benchtop in zip(moneyTypes, benchtop)}
+
+In order to make the calculations, I needed to have a wallet for the player that would be the result of the multiplied denominations.
+v was used as a shorthand for 'moneyValues', while counter was used as a reference to benchtop.
+Iterating moneyValues.values() from the key:values pair in the dictionary moneyValues, then iterating benchtop (frequency denomination values),
+then zipping the two together in a list called wallet (which the player 'has') achieved the results I wanted.
+
+Most importantly, if I remember correctly, multiplying 3, 6, and 7 produced long float results in some instances.
+In order to ensure the multiplied results were of a similar format, I researched and found that "%.2f" % x was the solution.
+
+This enabled me to take any multiplied value and 'delimit' it, if you will, by ignoring anything after 'two decimal places' aka %.2f.
+
+Lastly, I used to print the total amount for each denomination just to check, but once satisfied, I changed the last step to simply produce
+the total amount.
+
+Final words:
+This was mostly done in a day on 11.01.24, but I discovered some things I needed to refactor and add when returning to double check the next day.
+I was very excited to discover how python iteration, typecasting, and decimal delimiting worked. This helped me achieve a potential feature
+in a hypothetical RPG that had a currency/economy system with a feature I'd never seen before.
+
+Now onto my next project!
+
+As Rainier Wolfcastle would say, "Up and at them!" - The Simpsons, s07e02, Radioactive Man
